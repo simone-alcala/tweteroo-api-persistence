@@ -1,6 +1,7 @@
 package com.tweteroo.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +22,9 @@ public class AuthController {
   private UserService service;
 
   @PostMapping("/sign-in")
-  //@ResponseStatus(code = HttpStatus.CREATED)
-  public void create(@RequestBody @Valid UserDTO req) {
+  public ResponseEntity<String> create(@RequestBody @Valid UserDTO req) {
     service.create(req);
+    return ResponseEntity.ok(null);
   }
 
 }

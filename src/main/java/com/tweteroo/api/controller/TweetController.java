@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +29,19 @@ public class TweetController {
   private TweetService service;
 
   @PostMapping
-  public void create(@RequestBody @Valid TweetDTO req) {
+  public ResponseEntity<String> create(@RequestBody @Valid TweetDTO req) {
     service.create(req);
+    return ResponseEntity.ok(null);
   }
 
   @GetMapping
-  public List<TweetProjection> findAll(@PageableDefault(page = 0, size = 5) Pageable page) {
-    return service.findAll(page);
+  public ResponseEntity<List<TweetProjection>> findAll(@PageableDefault(page = 0, size = 5) Pageable page) {
+    return ResponseEntity.ok(service.findAll(page));
   }
 
   @GetMapping("/{username}")
-  public List<TweetProjection> findByUsername(@PathVariable("username") String username) {
-    return service.findByUsername(username);
+  public ResponseEntity<List<TweetProjection>> findByUsername(@PathVariable("username") String username) {
+    return ResponseEntity.ok(service.findByUsername(username));
   }
   
 }
