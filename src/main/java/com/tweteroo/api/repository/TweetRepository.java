@@ -2,6 +2,7 @@ package com.tweteroo.api.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +18,7 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
           + "FROM tb_tweets t "
           + "INNER JOIN tb_users u ON (t.user_id = u.id) ORDER BY t.id DESC",
     countQuery = "SELECT count(*) FROM tb_tweets t INNER JOIN tb_users u ON (t.user_id = u.id)")
-    List<TweetProjection> findAllTweets(Pageable pageable);
+    Page<TweetProjection> findAllTweets(Pageable pageable);
           
  
   @Query(
