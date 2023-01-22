@@ -37,12 +37,12 @@ public class TweetController {
 
   @GetMapping
   public ResponseEntity<Page<TweetProjection>> findAll(@PageableDefault(page = 0, size = 5) Pageable page) {
-    return ResponseEntity.ok(service.findAll(page));
+    return ResponseEntity.ok().body(service.findAll(page));
   }
 
   @GetMapping("/{username}")
   public ResponseEntity<List<TweetProjection>> findByUsername(@PathVariable("username") String username) {
-    return ResponseEntity.ok(service.findByUsername(username));
+    return ResponseEntity.ok().body(service.findByUsername(username));
   }
   
 }
