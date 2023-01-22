@@ -8,6 +8,6 @@ public record UserDTO (
   String username,
 
   @NotBlank
-  @Pattern(regexp = "^(?i)(https?:/{2})([a-z0-9+&@#/%?=~_!:,.;-]+)(.[png|bmp|jpe?g|gif])$")
+  @Pattern(regexp = "^(?i)(https?:/{2})([a-z0-9+&@#/%?=~_!:,.;-]+)(.[png|bmp|jpe?g|gif])$", message="Invalid avatar URL")
   String avatar) {
 }
