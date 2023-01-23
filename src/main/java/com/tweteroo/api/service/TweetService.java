@@ -12,6 +12,8 @@ import com.tweteroo.api.model.Tweet;
 import com.tweteroo.api.model.User;
 import com.tweteroo.api.projection.TweetProjection;
 import com.tweteroo.api.repository.TweetRepository;
+import com.tweteroo.api.service.exceptions.EntityNotFoundException;
+
 
 @Service
 public class TweetService {
@@ -20,13 +22,15 @@ public class TweetService {
   private TweetRepository repository;
 
   @Autowired
-  private UserService userRepository;
+  private UserService userService;
 
   public void create(TweetDTO tweetDTO) {
-    User user = userRepository.findByUsername(tweetDTO.username());
+    User user = userService.findByUsername(tweetDTO.username());
+
     if (user == null) {
-      // TODO 
+      throw new EntityNotFoundException("Username not found: " + tweetDTO.username());
     }
+
     repository.save(new Tweet(user, tweetDTO.tweet()));
   }
 
