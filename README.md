@@ -3,11 +3,9 @@
   <img src="https://www.svgrepo.com/download/354380/spring-icon.svg" height="100" alt="Java Logo" />
 </p>
 
-
-
 ## Get started with Tweteroo-API
 
-#
+# 
 
 ## ROUTES:
 
@@ -58,3 +56,7 @@ GET /tweets/{lorem}
         }
       ]
 ```
+
+## API doc:
+
+  > http://localhost:8080/swagger-ui/index.html
